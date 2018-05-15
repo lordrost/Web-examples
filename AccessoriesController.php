@@ -1,5 +1,5 @@
 <?php
-
+//Rostyslav
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -35,7 +35,7 @@ class AccessoriesController extends ProductController
                         $dependentIds = $dependentIds->merge($ids);
                     });
             });
-            
+
         $products = (object) $allProducts
             ->filter(
                 function($accessory,$key) use ($BillingMode, $dependentIds) {
@@ -43,7 +43,7 @@ class AccessoriesController extends ProductController
                     $isDependent = $dependentIds->isEmpty() || $dependentIds->contains($accessory->ProductId);
                     $hasPrice = floatval($accessory->BaseRate) > 0;
                     return $sameBillingMode && $isDependent && $hasPrice;
-                }) 
+                })
             ->sortBy('BaseRate')
             // Add available devices
             ->transform(function($accessory, $key) use ($productGroups) {
@@ -68,7 +68,7 @@ class AccessoriesController extends ProductController
                 }
                 return $accessory;
             })
-            ->all() 
+            ->all()
             ;
 
         // Show base view or specific product list if it exists
